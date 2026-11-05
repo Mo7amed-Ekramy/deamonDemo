@@ -1,0 +1,1715 @@
+/* Product tokens and layout. reference.css retains the approved visual language. */
+:root {
+  font-family: "Segoe UI", Inter, Arial, sans-serif;
+  color: #f4eeee;
+  background: #100d0e;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --app-bg: #100d0e;
+  --app-surface: #191415;
+  --app-text: #f4eeee;
+  --app-muted: #b6a7ac;
+  --app-border: #362a2d;
+  --app-soft: #391d24;
+  --app-action: #d9233b;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --app-bg: #f2eeeb;
+  --app-surface: #faf7f4;
+  --app-text: #211619;
+  --app-muted: #6c595f;
+  --app-border: #d9c9c5;
+  --app-soft: #f3dce0;
+  color-scheme: light;
+  background: #f2eeeb;
+  color: #211619;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+a,
+summary {
+  touch-action: manipulation;
+}
+button,
+summary {
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #ed3547;
+  outline-offset: 4px;
+}
+::selection {
+  background: #ed35474d;
+}
+svg {
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+button {
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    opacity 0.15s;
+}
+button:not(:disabled):hover {
+  filter: brightness(1.07);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -80px;
+  z-index: 1000;
+  background: var(--app-text);
+  color: var(--app-bg);
+  padding: 12px;
+  border-radius: 6px;
+}
+.skip-link:focus {
+  top: 12px;
+}
+.theme-toggle {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid var(--app-border) !important;
+  border-radius: 50%;
+  color: var(--app-muted);
+  background: var(--app-surface);
+  padding: 0 !important;
+}
+.theme-toggle svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+#daemon-site {
+  border: 0;
+  border-radius: 0;
+  overflow: clip;
+  min-height: 100dvh;
+}
+#daemon-site .dp-preview-bar {
+  padding-right: 24px;
+}
+#daemon-site .dp-preview-bar > span:last-child {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+#daemon-site .dp-preview-bar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--dp-text);
+}
+#daemon-site .dp-preview-bar svg {
+  width: 12px;
+  height: 12px;
+}
+#daemon-site .dp-primary {
+  background: var(--app-action);
+}
+/* Let the home sections grow together while keeping text readable. */
+#daemon-site:has(.dp-hero) {
+  --home-gutter: clamp(18px, 4vw, 96px);
+}
+#daemon-site:has(.dp-hero) .dp-wrap {
+  width: min(calc(100% - 2 * var(--home-gutter)), 1920px);
+}
+@media (min-width: 851px) {
+  #daemon-site .dp-hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(40px, 5vw, 112px);
+    padding-block: clamp(64px, 6vw, 112px);
+  }
+  #daemon-site .dp-hero-art {
+    width: 100%;
+    max-width: 720px;
+    justify-self: end;
+  }
+  #daemon-site:has(.dp-hero) .dp-section,
+  #daemon-site .dp-workspace-section {
+    padding-block: clamp(72px, 6vw, 112px);
+  }
+  #daemon-site .dp-benefits {
+    gap: clamp(25px, 3vw, 64px);
+  }
+  #daemon-site .dp-benefits p,
+  #daemon-site .dp-services-grid p {
+    max-width: 45ch;
+    font-size: 14px;
+  }
+  #daemon-site .dp-services-grid article {
+    padding: clamp(28px, 2.5vw, 48px);
+  }
+  #daemon-site .dp-services-grid h3 {
+    font-size: 18px;
+  }
+  #daemon-site .dp-plans {
+    max-width: 1080px;
+    gap: 28px;
+  }
+  #daemon-site .dp-plan {
+    padding: clamp(32px, 3vw, 48px);
+  }
+  #daemon-site .dp-faq {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  }
+}
+@media (min-width: 1200px) {
+  #daemon-site .dp-hero h1 {
+    font-size: clamp(59px, 4.2vw, 80px);
+  }
+  #daemon-site .dp-hero-copy > p {
+    max-width: 43ch;
+    font-size: 16px;
+  }
+  #daemon-site .dp-section-heading h2 {
+    font-size: clamp(36px, 2.6vw, 48px);
+  }
+  #daemon-site .dp-section-heading > p {
+    max-width: 36ch;
+    font-size: 14px;
+  }
+  #daemon-site .dp-centered > p {
+    max-width: 65ch;
+  }
+  #daemon-site .dp-shot-frame .dp-screenshot {
+    height: auto;
+    aspect-ratio: 2 / 1;
+  }
+}
+#daemon-site .brand-dot {
+  color: var(--dp-red);
+}
+#daemon-site .principle {
+  display: flex;
+  gap: 22px;
+}
+#daemon-site .dp-footer nav a {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+#daemon-site .dp-auth-switch a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--dp-text);
+  margin-left: 4px;
+}
+#daemon-site .dp-form-meta a {
+  font-size: 12px;
+  color: var(--dp-muted);
+}
+#daemon-site .dp-auth-helper {
+  font-size: 12px !important;
+}
+#daemon-site .dp-auth-content {
+  padding-block: 12px;
+}
+#daemon-site .dp-form-error {
+  color: #ff8793;
+}
+#daemon-site .dp-screenshot {
+  height: 560px;
+  object-fit: contain;
+  background: #100d0e;
+}
+#daemon-site .dp-auth-content .dp-button svg {
+  width: 16px;
+}
+#daemon-site .auth-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+#daemon-site .not-found {
+  min-height: 80dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 22px;
+  padding: 40px 20px;
+  text-align: center;
+}
+#daemon-site .not-found > span {
+  font-size: 80px;
+  color: var(--dp-red);
+  font-weight: 600;
+}
+#daemon-site .not-found h1 {
+  font-size: 32px;
+}
+#daemon-site .not-found p {
+  color: var(--dp-muted);
+}
+.error-page {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  padding: 30px;
+  text-align: center;
+}
+.error-page p {
+  max-width: 520px;
+  color: var(--app-muted);
+}
+.fallback-button {
+  background: var(--app-action);
+  color: white;
+  border: 0;
+  padding: 12px 20px;
+  border-radius: 7px;
+}
+html[data-theme="light"] #daemon-site {
+  --dp-bg: #f2eeeb;
+  --dp-panel: #faf7f4;
+  --dp-card: #e9e1dd;
+  --dp-line: #d9c9c5;
+  --dp-text: #211619;
+  --dp-muted: #6c595f;
+  --dp-soft: #f3dce0;
+  --dp-shadow: #4d242414;
+  --dp-red: #c51f35;
+}
+html[data-theme="light"] #daemon-site .dp-form-error {
+  color: #a00e25;
+}
+#daemon-concept.local-workspace {
+  min-height: 100dvh;
+}
+#daemon-concept .dc-app {
+  border: 0;
+  border-radius: 0;
+  min-height: 100dvh;
+  grid-template-columns: 210px minmax(0, 1fr);
+  overflow: visible;
+}
+#daemon-concept .dc-nav {
+  height: 100dvh;
+  position: sticky;
+  top: 0;
+  overflow: auto;
+  padding: 24px 16px 16px;
+}
+#daemon-concept .dc-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+#daemon-concept .dc-logo > span {
+  height: 9px;
+  width: 9px;
+  margin: 0;
+}
+#daemon-concept .dc-main {
+  height: 100dvh;
+  min-height: 700px;
+}
+#daemon-concept .dc-header {
+  padding: 19px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-shrink: 0;
+}
+#daemon-concept .dc-header small {
+  display: block;
+  letter-spacing: 0.1px;
+  margin-top: 5px;
+  font-size: 12px;
+}
+#daemon-concept .workspace-header-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-shrink: 0;
+}
+#daemon-concept .workspace-header-actions a {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--dc-muted);
+  font-size: 12px;
+}
+#daemon-concept .workspace-header-actions select {
+  background: var(--dc-panel);
+  color: var(--dc-text);
+  border: 1px solid var(--dc-border);
+  padding: 7px 9px;
+  border-radius: 6px;
+  font-size: 12px;
+  max-width: 170px;
+}
+#daemon-concept .workspace-header-actions > .theme-toggle {
+  display: none;
+}
+#daemon-concept .dc-toolbar,
+#daemon-concept .dc-shared-strip,
+#daemon-concept .dc-footer {
+  flex-shrink: 0;
+}
+#daemon-concept .dc-toolbar {
+  padding-inline: 24px;
+}
+#daemon-concept .dc-toolbar button {
+  font-size: 13px;
+}
+#daemon-concept .dc-shared-strip {
+  padding-inline: 24px;
+  font-size: 12px;
+}
+#daemon-concept .dc-shared-strip > span {
+  overflow-wrap: anywhere;
+}
+#daemon-concept .dc-screen {
+  grid-template-columns: minmax(0, 1fr) 280px;
+  min-height: 0;
+  overflow: hidden;
+}
+#daemon-concept .dc-conversation {
+  min-height: 0;
+  gap: 22px;
+  padding: 28px 30px 24px;
+}
+#daemon-concept .dc-chat-title {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 6px 0 0;
+}
+#daemon-concept .dc-chat-heading {
+  flex-shrink: 0;
+}
+#daemon-concept .dc-messages {
+  min-height: 0;
+  overflow-y: auto;
+  flex: 1;
+  padding: 2px 8px 12px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dc-border) transparent;
+}
+#daemon-concept .dc-messages .dc-user {
+  font-size: 14px;
+  line-height: 1.75;
+  max-width: 90%;
+  padding: 16px 18px;
+}
+#daemon-concept .dc-agent {
+  font-size: 14px;
+  gap: 13px;
+  line-height: 1.8;
+}
+#daemon-concept .dc-avatar {
+  padding: 1px 7px;
+  flex-shrink: 0;
+}
+#daemon-concept .dc-agent h2 {
+  font-size: 22px;
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+#daemon-concept .dc-agent p {
+  font-size: 14px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+#daemon-concept .dc-summary p {
+  font-size: 13px;
+}
+#daemon-concept .dc-summary h3 {
+  font-size: 17px;
+}
+#daemon-concept .dc-summary {
+  padding: 18px;
+}
+#daemon-concept .dc-pills span {
+  font-size: 12px;
+}
+#daemon-concept .dc-suggestions {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+#daemon-concept .dc-suggestions button {
+  font-size: 12px;
+  padding: 8px 12px;
+}
+#daemon-concept .dc-composer {
+  flex-shrink: 0;
+  padding: 13px 15px;
+}
+#daemon-concept textarea {
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 64px;
+  max-height: 180px;
+}
+#daemon-concept .dc-composer span {
+  font-size: 11px;
+}
+#daemon-concept .dc-send {
+  background: var(--app-action);
+  color: white;
+  min-height: 32px;
+  min-width: 32px;
+  align-items: center;
+  justify-content: center;
+}
+#daemon-concept .dc-primary {
+  background: var(--app-action);
+  color: white;
+  min-height: 42px;
+  font-size: 13px;
+}
+#daemon-concept .dc-secondary {
+  font-size: 12px;
+  min-height: 39px;
+}
+#daemon-concept .dc-artifacts,
+#daemon-concept .dc-inspector,
+#daemon-concept .dc-preview-detail {
+  overflow-y: auto;
+  padding: 28px 20px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dc-border) transparent;
+}
+#daemon-concept .dc-section-head h3 {
+  font-size: 14px;
+}
+#daemon-concept .dc-artifact {
+  padding: 15px 12px;
+  gap: 11px;
+  margin-bottom: 11px;
+}
+#daemon-concept .dc-artifact strong {
+  font-size: 13px;
+}
+#daemon-concept .dc-artifact small {
+  font-size: 11px;
+  line-height: 1.6;
+}
+#daemon-concept .dc-artifact > svg:last-child {
+  width: 13px;
+  height: 13px;
+  color: var(--dc-muted);
+}
+#daemon-concept .dc-artifacts .dc-note strong {
+  font-size: 13px;
+}
+#daemon-concept .dc-note {
+  font-size: 12px;
+  line-height: 1.75;
+}
+#daemon-concept .dc-output-context {
+  font-size: 12px;
+  line-height: 1.7;
+}
+#daemon-concept .dc-label {
+  font-size: 11px;
+}
+#daemon-concept .dc-chat-item {
+  font-size: 13px;
+  padding: 11px 9px;
+}
+#daemon-concept .dc-chat-item:hover {
+  background: var(--dc-card);
+}
+#daemon-concept .dc-profile {
+  padding-top: 28px;
+  flex-shrink: 0;
+}
+#daemon-concept .dc-profile > div {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  flex: 1;
+}
+#daemon-concept .dc-profile .theme-toggle {
+  width: 30px;
+  height: 30px;
+}
+#daemon-concept .project-picker {
+  display: block;
+  min-width: 0;
+}
+#daemon-concept .project-picker select {
+  width: 100%;
+  background: var(--dc-card);
+  color: var(--dc-text);
+  border: 1px solid var(--dc-border);
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 13px;
+}
+#daemon-concept .new-project-link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--dc-muted);
+  padding: 3px 0 8px;
+}
+#daemon-concept .new-project-link svg {
+  width: 14px;
+  height: 14px;
+}
+#daemon-concept .dc-new {
+  font-size: 13px;
+  justify-content: center;
+  padding: 11px;
+}
+#daemon-concept .dc-project-plan {
+  font-size: 13px;
+}
+#daemon-concept .dc-map-area {
+  overflow: auto;
+  padding: 30px 26px;
+}
+#daemon-concept .dc-map-title h2 {
+  font-size: 23px;
+  margin: 8px 0;
+}
+#daemon-concept .dc-map-title p {
+  font-size: 12px;
+}
+#daemon-concept .dc-graph {
+  padding-top: 35px;
+  max-width: 800px;
+  margin: auto;
+}
+#daemon-concept .dc-node-row .dc-node {
+  padding: 16px 12px;
+  min-height: 150px;
+}
+#daemon-concept .dc-node strong {
+  font-size: 13px;
+  line-height: 1.5;
+}
+#daemon-concept .dc-node span > span {
+  font-size: 12px;
+}
+#daemon-concept .dc-node-selected {
+  outline: 1px solid var(--dc-border);
+}
+#daemon-concept .dc-root {
+  min-width: 230px;
+}
+#daemon-concept .dc-strategy {
+  padding: 20px;
+  max-width: 95%;
+}
+#daemon-concept .dc-link {
+  height: 50px;
+}
+#daemon-concept .dc-branches {
+  height: 55px;
+  width: 80%;
+}
+#daemon-concept .dc-next {
+  font-size: 12px;
+  line-height: 1.7;
+  width: 100%;
+  justify-content: center;
+}
+#daemon-concept .dc-mini-art {
+  height: 63px;
+  font-size: 10px;
+  padding: 7px;
+  overflow-wrap: anywhere;
+}
+#daemon-concept .dc-mini-art em {
+  font-size: 12px;
+}
+#daemon-concept .dc-detail-body {
+  font-size: 13px;
+  line-height: 1.85;
+}
+#daemon-concept .dc-detail-body p {
+  margin-bottom: 14px;
+}
+#daemon-concept .dc-detail-body ol {
+  padding-left: 20px;
+}
+#daemon-concept .dc-inspector h2,
+#daemon-concept .dc-preview-detail h2 {
+  font-size: 22px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+#daemon-concept .dc-plan-facts > div {
+  font-size: 12px;
+  flex-wrap: wrap;
+}
+#daemon-concept .dc-approval p {
+  font-size: 12px;
+}
+#daemon-concept .connection-state {
+  padding: 14px;
+  border: 1px solid var(--dc-border);
+  border-radius: 8px;
+  background: var(--dc-card);
+}
+#daemon-concept .connection-state > span {
+  font-size: 10px;
+  color: var(--dc-muted);
+  letter-spacing: 1px;
+}
+#daemon-concept .connection-state > strong {
+  display: block;
+  margin: 8px 0;
+  font-size: 14px;
+}
+#daemon-concept .connection-state p {
+  margin: 0;
+}
+#daemon-concept .dc-preview-area {
+  padding: 30px;
+  overflow: auto;
+}
+#daemon-concept .dc-preview-heading h2 {
+  font-size: 23px;
+  line-height: 1.3;
+}
+#daemon-concept .dc-preview-detail p,
+#daemon-concept .dc-preview-detail dl {
+  font-size: 13px;
+}
+#daemon-concept .dc-social {
+  max-width: 370px;
+}
+#daemon-concept .dc-ad-title {
+  white-space: pre-line;
+  font-size: 35px;
+  overflow-wrap: anywhere;
+}
+#daemon-concept .dc-caption {
+  font-size: 13px;
+  line-height: 1.8;
+}
+#daemon-concept .dc-reel-strip {
+  max-width: 370px;
+}
+#daemon-concept .dc-reel-strip button {
+  font-size: 12px;
+}
+#daemon-concept .dc-footer {
+  font-size: 11px;
+  padding: 11px 24px;
+}
+#daemon-concept .workspace-mobile-controls {
+  display: none;
+}
+#daemon-concept .storage-error {
+  padding: 10px 20px;
+  background: var(--dc-soft);
+  color: var(--dc-text);
+  margin: 0;
+  font-size: 12px;
+}
+#daemon-concept .brand-creative {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+#daemon-concept .brand-creative > div {
+  width: 120px;
+  height: 120px;
+  background: #3f4837;
+  color: #e9dfcb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-12deg);
+  font-size: 48px;
+  font-family: Georgia, serif;
+  box-shadow: 20px 20px 0 #bd9f76;
+}
+html[data-theme="light"] #daemon-concept {
+  --dc-bg: #f2eeeb;
+  --dc-panel: #faf7f4;
+  --dc-card: #e9e1dd;
+  --dc-border: #d9c9c5;
+  --dc-text: #211619;
+  --dc-muted: #6c595f;
+  --dc-soft: #f3dce0;
+  --dc-red: #c51f35;
+}
+.project-dialog {
+  background: var(--app-surface);
+  color: var(--app-text);
+  border: 1px solid var(--app-border);
+  border-radius: 14px;
+  padding: 30px;
+  max-width: 530px;
+  width: calc(100% - 32px);
+  max-height: 90dvh;
+  overflow: auto;
+  box-shadow: 0 20px 100px #0006;
+}
+.project-dialog::backdrop {
+  background: #0009;
+  backdrop-filter: blur(4px);
+}
+.project-dialog h2 {
+  font-size: 26px;
+  letter-spacing: -0.8px;
+  margin: 10px 0;
+}
+.project-dialog > p {
+  color: var(--app-muted);
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 0 0 24px;
+}
+.dialog-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  color: var(--app-muted);
+}
+.icon-button {
+  border: 0;
+  background: transparent;
+  color: var(--app-muted);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.project-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  min-width: 0;
+}
+.project-form input,
+.project-form textarea,
+.project-form select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--app-border);
+  background: var(--app-bg);
+  color: var(--app-text);
+  border-radius: 7px;
+  font-size: 14px;
+  resize: vertical;
+}
+.project-form .form-two-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.project-form .dc-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--app-action);
+  color: white;
+  font-size: 13px;
+}
+.project-form .dc-primary svg {
+  width: 17px;
+}
+.project-form [role="alert"] {
+  font-size: 12px;
+  color: #ed3547;
+}
+#daemon-site .dp-agent-avatar,
+#daemon-site .dp-plan-tag,
+#daemon-concept .dc-avatar {
+  background: var(--app-action);
+}
+@media (min-width: 1600px) {
+  #daemon-concept .dc-screen {
+    grid-template-columns: minmax(0, 1fr) 330px;
+  }
+  #daemon-concept .dc-conversation {
+    padding: 35px max(35px, calc((100% - 900px) / 2));
+  }
+  #daemon-concept .dc-artifacts,
+  #daemon-concept .dc-inspector,
+  #daemon-concept .dc-preview-detail {
+    padding: 35px 28px;
+  }
+}
+@media (max-width: 1100px) {
+  #daemon-concept .dc-app {
+    grid-template-columns: 185px minmax(0, 1fr);
+  }
+  #daemon-concept .dc-screen {
+    grid-template-columns: minmax(0, 1fr) 235px;
+  }
+  #daemon-concept .dc-conversation {
+    padding: 24px 20px;
+  }
+  #daemon-concept .dc-artifacts,
+  #daemon-concept .dc-inspector,
+  #daemon-concept .dc-preview-detail {
+    padding: 24px 16px;
+  }
+  #daemon-concept .dc-node-row.dc-four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #daemon-concept .dc-node-row .dc-node {
+    min-height: 125px;
+  }
+  #daemon-concept .dc-node-row .dc-node small {
+    font-size: 10px;
+  }
+  #daemon-concept .dc-map-area {
+    padding: 25px 18px;
+  }
+  #daemon-concept .dc-chat-context {
+    display: none;
+  }
+  #daemon-concept .dc-header {
+    padding: 17px 20px;
+  }
+  #daemon-concept .workspace-header-actions {
+    gap: 10px;
+  }
+  #daemon-concept .workspace-header-actions select {
+    max-width: 145px;
+    font-size: 11px;
+  }
+  #daemon-concept .dc-profile > span {
+    display: none;
+  }
+}
+@media (max-width: 850px) {
+  #daemon-concept .dc-app {
+    grid-template-columns: 160px minmax(0, 1fr);
+  }
+  #daemon-concept .dc-screen {
+    grid-template-columns: minmax(0, 1fr) 210px;
+  }
+  #daemon-concept .dc-nav {
+    padding-inline: 12px;
+  }
+  #daemon-concept .dc-agent {
+    gap: 8px;
+  }
+  #daemon-concept .dc-agent h2 {
+    font-size: 19px;
+  }
+  #daemon-concept .dc-agent p,
+  #daemon-concept .dc-messages .dc-user {
+    font-size: 13px;
+  }
+  #daemon-concept .dc-conversation {
+    padding: 22px 15px;
+  }
+  #daemon-concept .dc-shared-strip {
+    padding-inline: 15px;
+  }
+  #daemon-concept .dc-shared-strip > span {
+    font-size: 11px;
+  }
+  #daemon-concept .workspace-header-actions > a {
+    display: none;
+  }
+  #daemon-concept .dc-map-title h2,
+  #daemon-concept .dc-preview-heading h2 {
+    font-size: 20px;
+  }
+  #daemon-concept .dc-node-row {
+    grid-template-columns: 1fr;
+  }
+  #daemon-concept .dc-node-row .dc-node {
+    min-height: auto;
+  }
+  #daemon-concept .dc-node-row .dc-node small {
+    font-size: 11px;
+  }
+  #daemon-concept .dc-node-row.dc-four {
+    grid-template-columns: 1fr 1fr;
+  }
+  #daemon-concept .dc-branches {
+    display: none;
+  }
+  #daemon-concept .dc-strategy {
+    margin-bottom: 20px;
+  }
+  #daemon-concept .dc-graph {
+    padding-top: 24px;
+  }
+  #daemon-concept .dc-mini-art {
+    height: 50px;
+  }
+  #daemon-concept .dc-preview-area {
+    padding: 22px 15px;
+  }
+}
+@media (max-width: 700px) {
+  #daemon-concept .dc-app {
+    display: block;
+  }
+  #daemon-concept .dc-nav {
+    display: none;
+  }
+  #daemon-concept .dc-main {
+    height: auto;
+    min-height: 100dvh;
+  }
+  #daemon-concept .dc-screen {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    min-height: 0;
+  }
+  #daemon-concept .dc-header {
+    padding: 17px 15px;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  #daemon-concept .workspace-header-actions > .theme-toggle {
+    display: inline-flex;
+  }
+  #daemon-concept .workspace-header-actions select {
+    max-width: 125px;
+    font-size: 11px;
+  }
+  #daemon-concept .workspace-header-actions {
+    gap: 8px;
+  }
+  #daemon-concept .dc-header > div:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  #daemon-concept .dc-header small {
+    font-size: 11px;
+  }
+  #daemon-concept .dc-toolbar {
+    padding: 10px 12px;
+  }
+  #daemon-concept .dc-toolbar nav {
+    gap: 3px;
+  }
+  #daemon-concept .dc-toolbar button {
+    font-size: 12px;
+    padding: 7px 8px;
+    gap: 5px;
+  }
+  #daemon-concept .dc-toolbar button svg {
+    width: 14px;
+    height: 14px;
+  }
+  #daemon-concept .workspace-mobile-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 9px;
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--dc-border);
+    background: var(--dc-panel);
+  }
+  #daemon-concept .workspace-mobile-controls > .dc-secondary {
+    margin: 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+  #daemon-concept .workspace-mobile-controls > select {
+    width: 100%;
+    min-width: 0;
+    background: var(--dc-panel);
+    color: var(--dc-text);
+    border: 1px solid var(--dc-border);
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 12px;
+  }
+  #daemon-concept .dc-conversation {
+    padding: 24px 18px;
+    gap: 22px;
+    min-height: 620px;
+  }
+  #daemon-concept .dc-messages {
+    overflow: visible;
+    max-height: none;
+    flex: 1;
+  }
+  #daemon-concept .dc-messages .dc-user {
+    font-size: 14px;
+    max-width: 94%;
+  }
+  #daemon-concept .dc-agent p {
+    font-size: 14px;
+  }
+  #daemon-concept .dc-agent h2 {
+    font-size: 21px;
+  }
+  #daemon-concept .dc-composer textarea {
+    font-size: 16px;
+  }
+  #daemon-concept .dc-artifacts,
+  #daemon-concept .dc-inspector,
+  #daemon-concept .dc-preview-detail {
+    overflow: visible;
+    padding: 24px 18px;
+    border-left: 0;
+    border-top: 1px solid var(--dc-border);
+  }
+  #daemon-concept .dc-artifacts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  #daemon-concept .dc-artifacts > .dc-section-head,
+  #daemon-concept .dc-artifacts > p,
+  #daemon-concept .dc-artifacts > .dc-note,
+  #daemon-concept .dc-output-context {
+    grid-column: 1/-1;
+  }
+  #daemon-concept .dc-artifact {
+    margin: 0;
+    padding: 14px 10px;
+    min-width: 0;
+  }
+  #daemon-concept .dc-artifact > svg:first-child {
+    width: 15px;
+    height: 15px;
+  }
+  #daemon-concept .dc-artifact strong {
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+  #daemon-concept .dc-artifact > svg:last-child {
+    display: none;
+  }
+  #daemon-concept .dc-map-area {
+    overflow: visible;
+    padding: 26px 18px;
+  }
+  #daemon-concept .dc-node-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  #daemon-concept .dc-node-row.dc-four {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  #daemon-concept .dc-node-row .dc-node {
+    padding: 14px 10px;
+    min-height: 125px;
+  }
+  #daemon-concept .dc-next {
+    justify-content: flex-start;
+  }
+  #daemon-concept .dc-preview-area {
+    overflow: visible;
+    padding: 26px 18px;
+  }
+  #daemon-concept .dc-inspector h2,
+  #daemon-concept .dc-preview-detail h2 {
+    font-size: 24px;
+  }
+  #daemon-concept .dc-footer {
+    padding: 14px 18px;
+  }
+  #daemon-site .dp-preview-bar > span:last-child {
+    display: none;
+  }
+  #daemon-site .dp-screenshot {
+    height: auto;
+    max-height: 570px;
+  }
+  #daemon-site .dp-nav-actions {
+    gap: 10px;
+  }
+  #daemon-site .dp-nav-actions .theme-toggle {
+    width: 30px;
+    height: 30px;
+  }
+  #daemon-site .principle {
+    gap: 12px;
+  }
+}
+@media (max-width: 420px) {
+  #daemon-site .dp-nav-actions {
+    gap: 7px;
+  }
+  #daemon-site .dp-nav-actions .dp-button {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  #daemon-site .dp-nav-actions .dp-text-button {
+    font-size: 11px;
+  }
+  #daemon-site .dp-logo {
+    font-size: 23px;
+  }
+  #daemon-site .dp-hero h1 {
+    font-size: 40px;
+    letter-spacing: -1.9px;
+  }
+  #daemon-concept .dc-header {
+    flex-wrap: wrap;
+  }
+  #daemon-concept .workspace-header-actions {
+    margin-left: auto;
+  }
+  #daemon-concept .dc-toolbar {
+    gap: 8px;
+  }
+  #daemon-concept .dc-toolbar button {
+    font-size: 11px;
+    padding: 7px;
+  }
+  #daemon-concept .dc-toolbar nav {
+    gap: 2px;
+  }
+  #daemon-concept .dc-shared-strip {
+    align-items: flex-start;
+    padding-inline: 15px;
+  }
+  #daemon-concept .dc-shared-strip > span {
+    gap: 5px;
+  }
+  #daemon-concept .dc-shared-strip > span > svg {
+    width: 14px;
+    height: 14px;
+    margin-top: 3px;
+  }
+  #daemon-concept .dc-node-row .dc-node {
+    padding: 12px 8px;
+  }
+  #daemon-concept .dc-node strong {
+    font-size: 12px;
+  }
+  #daemon-concept .dc-mini-art {
+    font-size: 9px;
+  }
+  #daemon-concept .dc-reel-art .dc-ad-title {
+    font-size: 30px;
+  }
+  .project-form .form-two-cols {
+    grid-template-columns: 1fr;
+  }
+  .project-dialog {
+    padding: 24px 20px;
+  }
+  #daemon-site .principle {
+    gap: 8px;
+  }
+}
+@media (max-width: 700px) {
+  #daemon-concept .workspace-header-actions > a {
+    display: flex;
+  }
+}
+@media (pointer: coarse) {
+  .theme-toggle,
+  .icon-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  #daemon-site .dp-field input {
+    font-size: 16px;
+  }
+  #daemon-concept .dc-send {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focused conversation layout: reveal project material only when needed. */
+#daemon-concept .sidebar-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  padding: 0;
+  border-radius: 6px;
+  color: var(--dc-muted);
+}
+#daemon-concept .dc-header > div:not(.workspace-header-actions) {
+  min-width: 0;
+  flex: 1;
+}
+#daemon-concept.sidebar-collapsed .dc-app {
+  grid-template-columns: minmax(0, 1fr);
+}
+#daemon-concept.sidebar-collapsed .dc-nav {
+  display: none;
+}
+#daemon-concept.chat-focused .dc-account,
+#daemon-concept.chat-focused .dc-project-plan,
+#daemon-concept.chat-focused .dc-project-note {
+  display: none;
+}
+#daemon-concept.chat-focused .dc-main {
+  min-height: 0;
+  height: 100dvh;
+}
+#daemon-concept.chat-focused .dc-header {
+  padding: 14px 22px;
+  gap: 12px;
+}
+#daemon-concept .chat-project-name {
+  display: block;
+  font-size: 11px;
+  color: var(--dc-muted);
+  margin-bottom: 3px;
+}
+#daemon-concept .chat-page-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+#daemon-concept.chat-focused .dc-toolbar {
+  padding: 7px 22px;
+}
+#daemon-concept .outputs-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  font-size: 12px;
+  border: 1px solid var(--dc-border);
+  border-radius: 6px;
+  color: var(--dc-muted);
+}
+#daemon-concept .outputs-toggle[aria-expanded="true"] {
+  background: var(--dc-card);
+  color: var(--dc-text);
+}
+#daemon-concept .outputs-toggle svg {
+  width: 15px;
+  height: 15px;
+}
+#daemon-concept .output-count {
+  font-size: 10px;
+  color: var(--dc-muted);
+  padding-left: 2px;
+}
+#daemon-concept .chat-screen {
+  grid-template-columns: minmax(0, 1fr);
+}
+#daemon-concept .chat-screen.outputs-visible {
+  grid-template-columns: minmax(0, 1fr) 280px;
+}
+#daemon-concept.chat-focused .dc-conversation {
+  width: 100%;
+  max-width: 850px;
+  justify-self: center;
+  padding: 30px 32px 22px;
+  gap: 16px;
+}
+#daemon-concept.chat-focused .dc-messages {
+  gap: 28px;
+  padding: 8px 8px 28px 2px;
+}
+#daemon-concept.chat-focused .dc-messages .dc-user {
+  font-size: 15px;
+  max-width: 86%;
+  padding: 13px 17px;
+}
+#daemon-concept.chat-focused .dc-agent {
+  font-size: 15px;
+  gap: 12px;
+}
+#daemon-concept.chat-focused .dc-agent p {
+  font-size: 15px;
+  line-height: 1.85;
+  margin-bottom: 14px;
+}
+#daemon-concept .chat-plan-attachment {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: min(100%, 350px);
+  border: 1px solid var(--dc-border);
+  border-radius: 9px;
+  padding: 13px 15px;
+  background: var(--dc-panel);
+  text-align: left;
+}
+#daemon-concept .chat-plan-attachment > svg:first-child {
+  color: var(--dc-muted);
+  width: 20px;
+  height: 20px;
+}
+#daemon-concept .chat-plan-attachment > svg:last-child {
+  width: 14px;
+  height: 14px;
+  color: var(--dc-muted);
+}
+#daemon-concept .chat-plan-attachment > span {
+  flex: 1;
+  min-width: 0;
+}
+#daemon-concept .chat-plan-attachment strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+}
+#daemon-concept .chat-plan-attachment small {
+  display: block;
+  font-size: 11px;
+  color: var(--dc-muted);
+  margin-top: 3px;
+}
+#daemon-concept.chat-focused .dc-composer {
+  padding: 11px 15px;
+  box-shadow: 0 5px 24px #0000000a;
+}
+#daemon-concept.chat-focused .dc-composer textarea {
+  min-height: 54px;
+  max-height: 140px;
+}
+#daemon-concept.chat-focused .dc-change-link {
+  font-size: 11px;
+  border: 0;
+  padding: 4px 0;
+  background: transparent;
+  color: var(--dc-muted);
+}
+#daemon-concept .chat-brief {
+  font-size: 12px;
+  color: var(--dc-muted);
+  margin: 12px 0;
+}
+#daemon-concept .chat-brief p {
+  margin-top: 10px;
+}
+#daemon-concept .outputs-heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--dc-muted);
+  font-size: 11px;
+}
+#daemon-concept .outputs-heading-actions .icon-button {
+  height: 28px;
+  width: 28px;
+}
+#daemon-concept .outputs-language {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--dc-border);
+  padding-top: 18px;
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--dc-muted);
+}
+#daemon-concept .outputs-language select {
+  width: 100%;
+  padding: 9px;
+  border: 1px solid var(--dc-border);
+  border-radius: 6px;
+  background: var(--dc-bg);
+  color: var(--dc-text);
+  font-size: 12px;
+}
+#daemon-concept .outputs-drawer {
+  position: fixed;
+  inset: 12px 12px 12px auto;
+  margin: 0;
+  padding: 0;
+  width: 330px;
+  max-width: calc(100% - 24px);
+  height: calc(100dvh - 24px);
+  max-height: none;
+  border: 1px solid var(--dc-border);
+  border-radius: 12px;
+  background: var(--dc-panel);
+  color: var(--dc-text);
+  box-shadow: 0 16px 70px #0005;
+  overflow: auto;
+}
+#daemon-concept .outputs-drawer::backdrop {
+  background: #0006;
+  backdrop-filter: blur(2px);
+}
+#daemon-concept .outputs-drawer .dc-artifacts {
+  display: block;
+  border: 0;
+  padding: 22px 18px;
+  overflow: visible;
+}
+#daemon-concept .outputs-drawer .dc-artifact {
+  margin-bottom: 10px;
+}
+#daemon-concept .outputs-drawer .dc-note {
+  margin-top: 18px;
+}
+@media (min-width: 1600px) {
+  #daemon-concept.chat-focused .dc-conversation {
+    padding-inline: 32px;
+    max-width: 880px;
+  }
+}
+@media (max-width: 700px) {
+  #daemon-concept .sidebar-toggle {
+    display: none;
+  }
+  #daemon-concept.chat-focused .dc-main {
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+  #daemon-concept.chat-focused .dc-header {
+    padding: 12px 15px;
+    flex-wrap: nowrap;
+  }
+  #daemon-concept.chat-focused .workspace-header-actions {
+    margin-left: 0;
+    gap: 10px;
+  }
+  #daemon-concept.chat-focused .dc-toolbar {
+    padding: 6px 12px;
+    gap: 7px;
+    flex-wrap: nowrap;
+  }
+  #daemon-concept.chat-focused .dc-toolbar nav {
+    gap: 0;
+  }
+  #daemon-concept.chat-focused .dc-toolbar nav button {
+    font-size: 11px;
+    padding: 7px 6px;
+    gap: 4px;
+  }
+  #daemon-concept .outputs-toggle {
+    padding: 7px;
+    gap: 5px;
+    font-size: 11px;
+  }
+  #daemon-concept .output-count {
+    display: none;
+  }
+  #daemon-concept .workspace-mobile-controls {
+    display: block;
+    padding: 0;
+  }
+  #daemon-concept .workspace-mobile-controls summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 9px 15px;
+    font-size: 11px;
+    color: var(--dc-muted);
+    list-style: none;
+  }
+  #daemon-concept .workspace-mobile-controls summary::-webkit-details-marker {
+    display: none;
+  }
+  #daemon-concept .workspace-mobile-controls summary svg {
+    width: 13px;
+    height: 13px;
+  }
+  #daemon-concept .mobile-control-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 9px;
+    padding: 4px 15px 12px;
+  }
+  #daemon-concept .mobile-control-grid > .dc-secondary {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 0;
+    width: auto;
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+  #daemon-concept .mobile-control-grid > select {
+    min-width: 0;
+    width: 100%;
+    background: var(--dc-panel);
+    color: var(--dc-text);
+    border: 1px solid var(--dc-border);
+    padding: 9px;
+    border-radius: 7px;
+    font-size: 12px;
+  }
+  #daemon-concept.chat-focused .chat-screen {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+  #daemon-concept.chat-focused .dc-conversation {
+    flex: 1;
+    min-height: 0;
+    max-width: none;
+    padding: 18px 15px 14px;
+    gap: 12px;
+    overflow: hidden;
+  }
+  #daemon-concept.chat-focused .dc-messages {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 3px 3px 20px 1px;
+    gap: 24px;
+  }
+  #daemon-concept.chat-focused .dc-messages .dc-user {
+    font-size: 14px;
+    max-width: 93%;
+  }
+  #daemon-concept.chat-focused .dc-agent p {
+    font-size: 14px;
+  }
+  #daemon-concept.chat-focused .dc-composer textarea {
+    font-size: 16px;
+    min-height: 50px;
+  }
+  #daemon-concept.chat-focused .dc-suggestions {
+    gap: 6px;
+  }
+  #daemon-concept.chat-focused .dc-suggestions button {
+    font-size: 11px;
+    padding: 7px 9px;
+  }
+}
+@media (max-width: 360px) {
+  #daemon-concept.chat-focused .dc-toolbar nav button > svg {
+    display: none;
+  }
+  #daemon-concept.chat-focused .workspace-header-actions > a {
+    font-size: 11px;
+  }
+  #daemon-concept .chat-page-title {
+    font-size: 14px;
+  }
+}
+
+/* Theme reveal originates at the switch; unsupported browsers get a color fade. */
+.theme-icons {
+  position: relative;
+  display: block;
+  width: 17px;
+  height: 17px;
+}
+.theme-icons svg {
+  position: absolute;
+  inset: 0;
+  transition:
+    transform 380ms cubic-bezier(0.22, 0.68, 0, 1),
+    opacity 250ms ease;
+  transform-origin: center;
+}
+.theme-icons .theme-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+.theme-icons .theme-moon {
+  opacity: 0;
+  transform: rotate(-70deg) scale(0.45);
+}
+.theme-icons.is-light .theme-sun {
+  opacity: 0;
+  transform: rotate(80deg) scale(0.45);
+}
+.theme-icons.is-light .theme-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+html.theme-revealing::view-transition-old(root),
+html.theme-revealing::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html.theme-revealing::view-transition-old(root) {
+  z-index: 1;
+}
+html.theme-revealing::view-transition-new(root) {
+  z-index: 2;
+}
+html.theme-revealing::view-transition {
+  pointer-events: none;
+}
+html.theme-fading,
+html.theme-fading * {
+  transition:
+    background-color 340ms ease,
+    color 300ms ease,
+    border-color 340ms ease,
+    box-shadow 340ms ease !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-icons svg {
+    transition: none !important;
+  }
+  html.theme-fading,
+  html.theme-fading * {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,307 @@
+/* Persistent navigation, organized around projects, project views and conversations. */
+#daemon-concept .dc-app {
+  grid-template-columns: 248px minmax(0, 1fr);
+}
+#daemon-concept .workspace-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 24px 16px 16px;
+  background: var(--dc-panel);
+  border-right: 1px solid var(--dc-border);
+  overflow: hidden;
+  height: 100dvh;
+  position: sticky;
+  top: 0;
+}
+#daemon-concept .sidebar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 4px 26px;
+  flex-shrink: 0;
+}
+#daemon-concept .sidebar-brand .dc-logo {
+  margin: 0;
+  font-size: 25px;
+  letter-spacing: -1px;
+}
+#daemon-concept .sidebar-collapse {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dc-muted);
+  padding: 0;
+  border-radius: 5px;
+}
+#daemon-concept .sidebar-collapse:hover {
+  background: var(--dc-card);
+}
+#daemon-concept .sidebar-collapse svg {
+  width: 16px;
+  height: 16px;
+}
+#daemon-concept .sidebar-section-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  color: var(--dc-muted);
+  padding: 0 5px;
+  margin-bottom: 10px;
+  min-height: 26px;
+}
+#daemon-concept .sidebar-add-project {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--dc-border);
+  border-radius: 6px;
+  padding: 0;
+  color: var(--dc-muted);
+}
+#daemon-concept .sidebar-add-project:hover {
+  background: var(--dc-card);
+  color: var(--dc-text);
+}
+#daemon-concept .sidebar-add-project svg {
+  width: 14px;
+  height: 14px;
+}
+#daemon-concept .sidebar-project-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+#daemon-concept .sidebar-folders {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 2px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dc-border) transparent;
+}
+#daemon-concept .sidebar-folder-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding-right: 5px;
+  border-radius: 8px;
+  color: var(--dc-muted);
+}
+#daemon-concept .sidebar-folder-row[data-active="true"],
+#daemon-concept .sidebar-folder-row:hover {
+  background: var(--dc-card);
+  color: var(--dc-text);
+}
+#daemon-concept .sidebar-folder-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+  min-height: 38px;
+  padding: 7px 4px 7px 7px;
+  border-radius: 7px;
+  text-align: left;
+  color: inherit;
+  font-size: 13px;
+  font-weight: 500;
+}
+#daemon-concept .sidebar-folder-toggle span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#daemon-concept .sidebar-folder-toggle svg,
+#daemon-concept .sidebar-folder-add svg {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+#daemon-concept .sidebar-folder-toggle .sidebar-folder-chevron {
+  width: 12px;
+  height: 12px;
+  color: var(--dc-muted);
+}
+#daemon-concept .sidebar-folder-toggle[aria-expanded="true"] .sidebar-folder-chevron {
+  transform: rotate(90deg);
+}
+#daemon-concept .sidebar-folder-add {
+  display: grid;
+  place-items: center;
+  flex: 0 0 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 6px;
+  color: var(--dc-muted);
+}
+#daemon-concept .sidebar-folder-add:hover {
+  background: var(--dc-soft);
+  color: var(--dc-text);
+}
+
+#daemon-concept .workspace-navigation .dc-chat-list {
+  gap: 2px;
+  margin: 4px 0 6px 25px;
+  padding: 1px 2px 1px 7px;
+  border-inline-start: 1px solid var(--dc-border);
+}
+#daemon-concept .workspace-navigation .dc-chat-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  border-radius: 7px;
+  min-height: 34px;
+  font-size: 12px;
+  color: var(--dc-muted);
+  flex-shrink: 0;
+  min-width: 0;
+}
+#daemon-concept .workspace-navigation .dc-chat-item > svg {
+  width: 15px;
+  height: 15px;
+  color: var(--dc-muted);
+}
+#daemon-concept .workspace-navigation .dc-chat-item > span:first-of-type {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+#daemon-concept .workspace-navigation .dc-chat-item:hover {
+  background: var(--dc-card);
+  color: var(--dc-text);
+}
+#daemon-concept .workspace-navigation .dc-chat-item[aria-current="page"] {
+  background: var(--dc-soft);
+  color: var(--dc-text);
+}
+#daemon-concept .workspace-navigation .dc-chat-item[aria-current="page"] > svg {
+  color: var(--dc-red);
+}
+#daemon-concept .sidebar-active-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--dc-red);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+#daemon-concept .sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 2px 0;
+  margin-top: 13px;
+  border-top: 1px solid var(--dc-border);
+  flex-shrink: 0;
+  min-width: 0;
+}
+#daemon-concept .sidebar-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 31px;
+  height: 31px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--dc-card);
+  border: 1px solid var(--dc-border);
+  color: var(--dc-text);
+  font-size: 10px;
+}
+#daemon-concept .sidebar-profile-info {
+  min-width: 0;
+  flex: 1;
+}
+#daemon-concept .sidebar-profile-info strong {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+#daemon-concept .sidebar-profile-info small {
+  display: block;
+  font-size: 10px;
+  color: var(--dc-muted);
+  line-height: 1.6;
+  margin-top: 2px;
+}
+#daemon-concept .sidebar-profile .theme-toggle {
+  width: 28px;
+  height: 28px;
+  border: 0 !important;
+  background: transparent;
+}
+@media (max-width: 1100px) {
+  #daemon-concept .dc-app {
+    grid-template-columns: 224px minmax(0, 1fr);
+  }
+  #daemon-concept .workspace-navigation {
+    padding-inline: 13px;
+  }
+}
+@media (max-width: 850px) {
+  #daemon-concept .dc-app {
+    grid-template-columns: 200px minmax(0, 1fr);
+  }
+  #daemon-concept .workspace-navigation {
+    padding-inline: 11px;
+  }
+  #daemon-concept .sidebar-brand {
+    padding-inline: 3px;
+  }
+  #daemon-concept .sidebar-brand .dc-logo {
+    font-size: 23px;
+  }
+
+  #daemon-concept .sidebar-profile {
+    gap: 8px;
+  }
+  #daemon-concept .sidebar-avatar {
+    display: none;
+  }
+}
+#daemon-concept.sidebar-collapsed .dc-app {
+  grid-template-columns: minmax(0, 1fr);
+}
+#daemon-concept.sidebar-collapsed .workspace-navigation {
+  display: none;
+}
+@media (max-width: 700px) {
+  #daemon-concept .dc-app {
+    display: block;
+  }
+  #daemon-concept .workspace-navigation {
+    display: none;
+  }
+}
+@media (pointer: coarse) {
+  #daemon-concept .sidebar-folder-toggle,
+  #daemon-concept .workspace-navigation .dc-chat-item {
+    min-height: 44px;
+  }
+  #daemon-concept .sidebar-folder-add,
+  #daemon-concept .sidebar-add-project,
+  #daemon-concept .sidebar-collapse {
+    min-width: 34px;
+    min-height: 34px;
+  }
+}

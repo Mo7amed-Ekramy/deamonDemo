@@ -1,0 +1,409 @@
+/* Free spatial workspace. Card positions are UI preferences, separate from plan approval. */
+#daemon-concept.canvas-focused {
+  --canvas-line: #6c535b;
+}
+html[data-theme="light"] #daemon-concept.canvas-focused {
+  --canvas-line: #baa1a8;
+}
+#daemon-concept.canvas-focused .dc-main {
+  height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+}
+#daemon-concept.canvas-focused .dc-shared-strip,
+#daemon-concept.canvas-focused .dc-footer {
+  display: none;
+}
+#daemon-concept .canvas-map {
+  display: block;
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+#daemon-concept .canvas-loading {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--dc-muted);
+}
+#daemon-concept .campaign-canvas {
+  position: absolute;
+  inset: 0;
+  background: var(--dc-bg);
+  overflow: hidden;
+  isolation: isolate;
+}
+#daemon-concept .campaign-canvas .react-flow {
+  width: 100%;
+  height: 100%;
+  background: var(--dc-bg);
+  --xy-node-color: var(--dc-text);
+  --xy-background-color: var(--dc-bg);
+  --xy-edge-stroke: var(--canvas-line);
+  --xy-node-boxshadow-hover: 0 8px 24px #0002;
+  --xy-node-boxshadow-selected: 0 0 0 1px var(--dc-red);
+}
+#daemon-concept .campaign-canvas .react-flow__edges {
+  width: 100%;
+  height: 100%;
+}
+#daemon-concept .campaign-canvas .react-flow__background {
+  width: 100%;
+  height: 100%;
+}
+#daemon-concept .campaign-canvas .react-flow__node-campaign {
+  background: transparent;
+  border: 0;
+  border-radius: 13px;
+  color: var(--dc-text);
+  padding: 0;
+}
+#daemon-concept .canvas-heading {
+  position: absolute;
+  top: 22px;
+  left: 25px;
+  z-index: 4;
+  pointer-events: none;
+}
+#daemon-concept .canvas-heading > span {
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  color: var(--dc-muted);
+}
+#daemon-concept .canvas-heading h2 {
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  font-weight: 500;
+  margin: 7px 0 0;
+  line-height: 1.3;
+}
+#daemon-concept .canvas-hint {
+  position: absolute;
+  top: 90px;
+  left: 25px;
+  z-index: 4;
+  color: var(--dc-muted);
+  font-size: 11px;
+  pointer-events: none;
+  max-width: 380px;
+}
+#daemon-concept .canvas-card {
+  position: relative;
+  width: 240px;
+  background: var(--dc-panel);
+  border: 1px solid var(--dc-border);
+  border-radius: 13px;
+  box-shadow: 0 10px 28px #00000018;
+  color: var(--dc-text);
+  overflow: visible;
+  transition:
+    border-color 150ms,
+    box-shadow 150ms;
+}
+#daemon-concept .canvas-card:hover {
+  box-shadow: 0 12px 34px #00000026;
+  border-color: var(--canvas-line);
+}
+#daemon-concept .canvas-card.is-active {
+  border-color: var(--dc-red);
+  box-shadow:
+    0 0 0 1px var(--dc-red),
+    0 12px 28px #0002;
+}
+#daemon-concept .canvas-card.is-updated:not(.is-active) {
+  border-color: var(--dc-red);
+}
+#daemon-concept .canvas-card .react-flow__handle {
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--dc-bg);
+  background: var(--canvas-line);
+  pointer-events: none;
+  min-width: 6px;
+  min-height: 6px;
+}
+#daemon-concept .canvas-card-handle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 16px 10px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+#daemon-concept .dragging .canvas-card-handle {
+  cursor: grabbing;
+}
+#daemon-concept .canvas-card-icon {
+  display: flex;
+  width: 29px;
+  height: 29px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--dc-border);
+  border-radius: 7px;
+  color: var(--dc-muted);
+}
+#daemon-concept .canvas-card-eyebrow {
+  flex: 1;
+  font-size: 9px;
+  letter-spacing: 1.1px;
+  color: var(--dc-muted);
+}
+#daemon-concept .canvas-grip {
+  width: 13px;
+  height: 13px;
+  color: var(--dc-muted);
+  opacity: 0.65;
+}
+#daemon-concept .canvas-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  text-align: left;
+  width: 100%;
+  padding: 0 16px 16px;
+  border-radius: 0 0 12px 12px;
+  line-height: 1.5;
+}
+#daemon-concept .canvas-card-content:hover {
+  filter: none;
+  background: color-mix(in srgb, var(--dc-card) 35%, transparent);
+}
+#daemon-concept .canvas-card-content > strong {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+#daemon-concept .canvas-card-subtitle {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--dc-muted);
+}
+#daemon-concept .canvas-card-bottom {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--dc-muted);
+  width: 100%;
+  border-top: 1px solid var(--dc-border);
+  padding-top: 11px;
+  margin-top: 3px;
+}
+#daemon-concept .canvas-card-bottom > svg {
+  width: 13px;
+  height: 13px;
+}
+#daemon-concept .canvas-card-project {
+  width: 260px;
+  background: linear-gradient(135deg, var(--dc-soft), var(--dc-panel));
+  border-color: var(--canvas-line);
+}
+#daemon-concept .canvas-card-project .canvas-card-icon {
+  background: var(--dc-red);
+  color: #fff;
+  border: 0;
+}
+#daemon-concept .canvas-card-project .canvas-card-content > strong {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+#daemon-concept .canvas-card-learning {
+  background: color-mix(in srgb, var(--dc-panel) 75%, var(--dc-bg));
+  border-style: dashed;
+  box-shadow: none;
+}
+#daemon-concept .canvas-future-edge .react-flow__edge-path {
+  stroke-dasharray: 5 5;
+}
+#daemon-concept .canvas-visual-sample {
+  background: #e7ddca;
+  color: #3f4837;
+  width: 100%;
+  padding: 13px 14px 12px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+#daemon-concept .canvas-visual-sample > span {
+  font-size: 7px;
+  letter-spacing: 1.7px;
+}
+#daemon-concept .canvas-visual-sample em {
+  font-family: Georgia, serif;
+  font-size: 29px;
+  line-height: 1;
+  letter-spacing: -0.9px;
+}
+#daemon-concept .campaign-canvas-controls {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px;
+  background: var(--dc-panel);
+  border: 1px solid var(--dc-border);
+  border-radius: 10px;
+  box-shadow: 0 6px 25px #0002;
+  margin: 0 0 22px;
+  z-index: 6;
+  max-width: calc(100% - 24px);
+}
+#daemon-concept .campaign-canvas-controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  min-height: 33px;
+  padding: 0;
+  border-radius: 6px;
+  color: var(--dc-text);
+}
+#daemon-concept .campaign-canvas-controls button:hover {
+  background: var(--dc-card);
+}
+#daemon-concept .campaign-canvas-controls svg {
+  width: 16px;
+  height: 16px;
+}
+#daemon-concept .canvas-zoom {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  min-width: 41px;
+  text-align: center;
+  color: var(--dc-muted);
+}
+#daemon-concept .canvas-control-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--dc-border);
+  margin: 0 5px;
+}
+#daemon-concept .campaign-canvas .react-flow__attribution {
+  background: var(--dc-panel);
+  padding: 3px 6px;
+  font-size: 9px;
+  color: var(--dc-muted);
+}
+#daemon-concept .campaign-canvas .react-flow__attribution a {
+  color: var(--dc-muted);
+}
+#daemon-concept .canvas-inspector {
+  position: absolute;
+  inset: 16px 16px 16px auto;
+  z-index: 8;
+  width: 290px;
+  border: 1px solid var(--dc-border);
+  border-radius: 12px;
+  box-shadow: 0 16px 45px #0003;
+  padding: 25px 20px;
+  overflow-y: auto;
+  background: var(--dc-panel);
+}
+#daemon-concept .canvas-inspector > h2 {
+  padding-right: 20px;
+  font-size: 21px;
+  line-height: 1.4;
+  margin: 12px 0 18px;
+}
+#daemon-concept .canvas-inspector-close {
+  position: absolute;
+  top: 14px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  color: var(--dc-muted);
+  padding: 0;
+}
+#daemon-concept .canvas-inspector-close:hover {
+  background: var(--dc-card);
+}
+#daemon-concept .canvas-inspector-close svg {
+  width: 16px;
+  height: 16px;
+}
+#daemon-concept .canvas-learning-note {
+  font-size: 13px;
+  color: var(--dc-muted);
+  line-height: 1.8;
+}
+@media (max-width: 700px) {
+  #daemon-concept.canvas-focused .dc-header {
+    padding: 12px 15px;
+    align-items: center;
+  }
+  #daemon-concept.canvas-focused .dc-toolbar {
+    padding: 6px 12px;
+  }
+  #daemon-concept .canvas-map {
+    display: block;
+    min-height: 0;
+  }
+  #daemon-concept .canvas-heading {
+    top: 18px;
+    left: 18px;
+  }
+  #daemon-concept .canvas-heading h2 {
+    font-size: 20px;
+  }
+  #daemon-concept .canvas-hint {
+    top: 79px;
+    left: 18px;
+    font-size: 10px;
+    max-width: 270px;
+  }
+  #daemon-concept .canvas-inspector {
+    inset: auto 12px 12px;
+    width: auto;
+    max-height: 52%;
+    padding: 24px 18px;
+    border-radius: 13px;
+  }
+  #daemon-concept .canvas-inspector > h2 {
+    font-size: 21px;
+  }
+  #daemon-concept .campaign-canvas-controls {
+    margin-bottom: 18px;
+  }
+  #daemon-concept .canvas-card-content {
+    min-height: 0;
+  }
+}
+@media (pointer: coarse) {
+  #daemon-concept .campaign-canvas-controls button {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 44px;
+  }
+  #daemon-concept .canvas-inspector-close {
+    width: 44px;
+    height: 44px;
+    top: 3px;
+    right: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #daemon-concept .canvas-card {
+    transition: none;
+  }
+}
+@media (max-width: 700px) {
+  #daemon-concept .canvas-heading,
+  #daemon-concept .canvas-hint {
+    display: none;
+  }
+}
